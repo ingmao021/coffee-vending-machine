@@ -1,9 +1,13 @@
+package domain.entity;
+
+import domain.valueobject.ProductType;
+
 public class Product {
     private String name;
     private ProductType type;
-    private int price;              // cents
-    private int preparationTime;    // seconds
-    private int amountLeft;         // cup
+    private int price;
+    private int preparationTime;
+    private int amountLeft;
     
     public Product(String name, ProductType type, int price, int preparationTime, int amountLeft) {
         this.name = name;

@@ -43,21 +43,21 @@ Debes implementar una maquina expendedora de cafe. La maquina de cafe funciona d
 
 ### Requisitos
 
-- **Java Development Kit (JDK)** 8 o superior
+- **Java Development Kit (JDK)** 17 o superior
 
-En intellij idea en la parte de file abre project structure, en donde dice SDK elije el jdk 17
+Elige en project structure el SDK de Java 17 para compilar y ejecutar el proyecto.
 
-### Compilacion y Ejecucion
+### Compilacion y Ejecucion rapida
 
 ```bash
-# Compilar el proyecto
-javac -d bin src/*.java
-
-# Ejecutar la aplicacion
-java -cp bin App
+# Ejecutar el script de compilacion y ejecucion
+./build.ps1
 ```
+
 Se recomienda ampliar la terminal para ver el flujo completo de la maquina expendedora.
 
+
 ---
+
 *Diseñado con el Patron de Diseño State*
 **Autor:** Anderson Mauricio Ordoñez Zuñiga

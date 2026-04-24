@@ -1,4 +1,6 @@
-final class MoneyReturn {
+package domain.entity;
+
+public final class MoneyReturn {
     private final boolean status;
     private final Money money;
 

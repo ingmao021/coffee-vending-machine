@@ -1,3 +1,5 @@
+package domain.entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class Money {
     private int oneThousandPesosCount;
     private static ArrayList<String> types = new ArrayList<>(List.of("50 Pesos", "100 Pesos", "200 Pesos", "500 Pesos", "1000 Pesos"));
 
-    Money() {
+    public Money() {
         this.reset();
     }
 
@@ -103,59 +105,5 @@ public class Money {
         this.twoHundredPesosCount = 0;
         this.fiveHundredPesosCount = 0;
         this.oneThousandPesosCount = 0;
-    }
-
-    public static MoneyReturn calculateReturn(Money payment, int price, Money machineMoney) {
-        boolean status = false;
-        Money money = new Money();
-
-        String type;
-        int returnMoneyAmount = payment.getAmount()-price;
-        int coinOrNote;
-        int coinOrNoteCount;
-        int availableCoinOrNoteCount;
-        int quotient=0;
-        int remainder=returnMoneyAmount;
-
-        for (int i = types.size()-1; i >= 0; i--) {
-            type = types.get(i);
-            coinOrNote = Integer.parseInt(type.split(" ")[0]);
-            coinOrNoteCount = 0;
-
-            // Debug
-            // System.out.println(coinOrNote + " " + remainder);
-
-            do {
-                if(remainder<coinOrNote) {
-                    break;
-                }
-
-                quotient = remainder/coinOrNote;
-                availableCoinOrNoteCount = machineMoney.getCount(type);
-                if(availableCoinOrNoteCount>=(coinOrNoteCount+quotient)) {
-                    remainder %= coinOrNote;
-                    coinOrNoteCount += quotient;
-                    machineMoney.remove(type, quotient);
-                }
-                else {
-                    remainder = remainder - (coinOrNote*availableCoinOrNoteCount);
-                    coinOrNoteCount += availableCoinOrNoteCount;
-                    machineMoney.remove(type, availableCoinOrNoteCount);
-                    break;
-                }
-
-            } while(quotient>0);
-
-            money.add(type, coinOrNoteCount);
-        }
-
-        if(remainder==0) {
-            status = true;
-        }
-        else {
-            money = new Money();
-        }
-
-        return new MoneyReturn(status, money);
     }
 }
